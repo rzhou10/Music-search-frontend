@@ -2,7 +2,7 @@ function AlbumSearch() {
 
   return (
     <div>
-
+      Hi!
     </div>
   )
 }
