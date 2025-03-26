@@ -2,21 +2,25 @@ import { useState } from "react"
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import axios from 'axios';
 
-function AlbumAdd() {
+function AlbumInsert() {
   const [artist, setArtist] = useState('');
   const [album, setAlbum] = useState('');
   const [image, setImage] = useState('');
   const [year, setYear] = useState(0);
   const [genre, setGenre] = useState('');
 
-  const addAlbum = () => {
-    axios.post('', {artist, album, image, year, genre}).then();
+  const insertAlbum = () => {
+    axios.post('', { artist, album, image, year, genre }).then((result) => {
+      if (result) {
+        window.location.href = '/search-albums';
+      }
+    });
   }
 
   return (
     <div>
       <h1 className="mb-5">Add a new album here!</h1>
-      <Container style={{width: '35%'}}>
+      <Container style={{ width: '35%' }}>
         <Form>
           <Row className="form-row">
             <Col md={3}>
@@ -62,10 +66,10 @@ function AlbumAdd() {
       </Container>
       <Button onClick={(e) => {
         e.preventDefault();
-        addAlbum();
-      }}>Add Album</Button>
+        insertAlbum();
+      }}>Add Album</Button>s
     </div>
   )
 }
 
-export default AlbumAdd
+export default AlbumInsert

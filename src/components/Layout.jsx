@@ -1,6 +1,14 @@
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 
 function Layout({ children }) {
+
+  const location = window.location.href.split('/').at(-1);
+
+  if (location === '' || location === 'login') {
+    return <>
+    {children}
+    </>
+  }
 
   return (
     <div className='mt-0'>
@@ -13,6 +21,11 @@ function Layout({ children }) {
           </Nav>
         </Container>
       </Navbar>
+      <Button style={{position: 'absolute', top: '17px', right: '10px'}} onClick={(e) => {
+        e.preventDefault();
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+      }}>Log Out</Button>
       {children}
     </div>
   )
