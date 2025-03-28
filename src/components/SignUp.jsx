@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import axios from 'axios';
 
-function Login() {
+function SignUp() {
   const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [hasError, setHasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
@@ -12,10 +13,11 @@ function Login() {
     window.location.href = "/album-search";
   }
 
-  const login = () => {
-    axios.post(`${process.env.REACT_APP_ROUTE}login`, { username, password }).then((result) => {
-      localStorage.setItem("token", result.data.token);
-      window.location.href = "/album-search";
+  const createAccount = () => {
+    axios.post(`${process.env.REACT_APP_ROUTE}create-account`, { username, password }).then((result) => {
+      if (result.status === 200) {
+        window.location.href = "/login";
+      }
     }).catch((e) => {
       setHasError(true);
       setErrorMessage(e.message);
@@ -42,6 +44,14 @@ function Login() {
           </Row>
           <Row className="form-row">
             <Col md={3}>
+              <Form.Label>Name:</Form.Label>
+            </Col>
+            <Col>
+              <Form.Control value={name} onChange={(e) => setName(e.target.value)} />
+            </Col>
+          </Row>
+          <Row className="form-row">
+            <Col md={3}>
               <Form.Label>Password:</Form.Label>
             </Col>
             <Col>
@@ -53,10 +63,10 @@ function Login() {
       </Container>
       <Button onClick={(e) => {
         e.preventDefault();
-        login();
-      }}>Login</Button>
+        createAccount();
+      }}>Create Account</Button>
     </div>
   )
 }
 
-export default Login
+export default SignUp

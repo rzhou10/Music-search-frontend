@@ -8,7 +8,7 @@ function AlbumSearch() {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    axios.post("").then((result) => {
+    axios.post(`${process.env.REACT_APP_ROUTE}search`).then((result) => {
       setTotal(result.data.total);
       setResults(result.data.albums);
     });

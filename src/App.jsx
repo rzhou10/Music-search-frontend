@@ -5,6 +5,7 @@ import AlbumSearch from './components/AlbumSearch';
 import AlbumInsert from './components/AlbumInsert';
 import Collection from './components/Collection';
 import Login from './components/Login';
+import SignUp from './components/SignUp';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path={"/"} element={<Login />} />
           <Route path={"/login"} element={<Login />} />
+          <Route path={"/sign-up"} element={<SignUp />} />
           <Route path={"/collection"} element={<Collection />} />
           <Route path={"/search-albums"} element={<AlbumSearch />} />
           <Route path={"/add-albums"} element={<AlbumInsert />} />

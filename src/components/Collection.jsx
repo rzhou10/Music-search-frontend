@@ -1,8 +1,19 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 
 function Collection() {
   const [albums, setAlbums] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_ROUTE}collection`).then((results) => {
+      if (results.status === 200) {
+        setAlbums(results.data.albums);
+      }
+    }).catch((e) => {
+      //
+    })
+  })
 
   return (
     <Container>

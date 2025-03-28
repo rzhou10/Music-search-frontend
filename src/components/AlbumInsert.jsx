@@ -10,10 +10,12 @@ function AlbumInsert() {
   const [genre, setGenre] = useState('');
 
   const insertAlbum = () => {
-    axios.post('', { artist, album, image, year, genre }).then((result) => {
+    axios.post(`${process.env.REACT_APP_ROUTE}insert`, { artist, album, image, year, genre }).then((result) => {
       if (result) {
         window.location.href = '/search-albums';
       }
+    }).catch((e) => {
+      //
     });
   }
 
